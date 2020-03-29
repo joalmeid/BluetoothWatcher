@@ -1,0 +1,12 @@
+﻿{
+  "kvmDevice": {
+    "Caption": "ASUS USB-BT400",
+    "ClassGuid": "{e0cbf06c-cd8b-4647-bb8a-263b43f0f974}",
+    "PNPDeviceID": "USB\\VID_0B05&PID_17CB\\5CF370875E81"
+  },
+  "desktopDevice": {
+    "Caption": "Marvell AVASTAR Bluetooth Radio Adapter",
+    "ClassGuid": "{e0cbf06c-cd8b-4647-bb8a-263b43f0f974}",
+    "PNPDeviceID": "USB\\VID_1286&PID_204C\\0000000000000000"
+  }
+}
