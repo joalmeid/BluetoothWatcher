@@ -18,10 +18,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9
+      with:
+          versionSpec: '5.1.x'
+
+    - name: Use GitVersion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9
+
     - name: Install dependencies
       run: dotnet restore ${{ env.APP_PATH }}
 
@@ -31,21 +42,21 @@ jobs:
     - name: Publish
       run: dotnet publish ${{ env.APP_PATH }} --configuration Release --no-restore --output .\publish
 
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        # body: |
-        #   Changes in this Release
-        #   - First Change
-        #   - Second Change
+        tag_name: ${{ steps.gitversion.outputs.SemVer }}
+        release_name: Release ${{ steps.gitversion.outputs.SemVer }}
+        body: |
+          Changes in Release v${{ steps.gitversion.outputs.SemVer }}
+          - First Change
+          - Second Change
         draft: false
         prerelease: false
-
     - name: Upload Release Asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
