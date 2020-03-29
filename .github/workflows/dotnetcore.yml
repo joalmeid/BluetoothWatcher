@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 env: 
-  app_source: src\jda-bl-forms-core\jda-bl-forms-core.csproj
+  app_source: .\src\jda-bl-forms-core\jda-bl-forms-core.csproj
 
 jobs:
   build:
@@ -29,7 +29,7 @@ jobs:
       run: dotnet build $app_source --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish $app_source --configuration Release --no-restore --output $GITHUB_WORKSPACE\publish
+      run: dotnet publish $app_source --configuration Release --no-restore --output .\publish
 
     - name: Create Release
       id: create_release
@@ -52,7 +52,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./my-artifact.zip
-        asset_name: my-artifact.zip
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: .\publish\*.zip
+        asset_name: bl-watcher
         asset_content_type: application/zip
