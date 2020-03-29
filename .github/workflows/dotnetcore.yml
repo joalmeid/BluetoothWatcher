@@ -8,11 +8,10 @@ on:
   pull_request:
     branches: [ master ]
 
-env: 
-  APP_PATH: .\src\jda-bl-forms-core\jda-bl-forms-core.csproj
-
 jobs:
   build:
+    env: 
+      APP_PATH: .\src\jda-bl-forms-core\jda-bl-forms-core.csproj
 
     runs-on: windows-latest
 
