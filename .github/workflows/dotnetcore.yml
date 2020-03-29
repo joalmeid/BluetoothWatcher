@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 env: 
-  app-source: ./src/jda-bl-forms-core/jda-bl-forms-core.csproj
+  app_source: ./src/jda-bl-forms-core/jda-bl-forms-core.csproj
 
 jobs:
   build:
@@ -23,10 +23,10 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore $app-source
+      run: dotnet restore $app_source
 
     - name: Build
-      run: dotnet build $app-source --configuration Release --no-restore
+      run: dotnet build $app_source --configuration Release --no-restore
 
     - name: Create Release
       id: create_release
