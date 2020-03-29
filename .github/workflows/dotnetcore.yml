@@ -23,7 +23,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore $app_source
+      run: dotnet restore .\src\jda-bl-forms-core\jda-bl-forms-core.csproj --verbosity detailed
 
     - name: Build
       run: dotnet build $app_source --configuration Release --no-restore
