@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <AssemblyName>jda-bl</AssemblyName>
+    <AssemblyName>bl-watcher</AssemblyName>
     <AssemblyTitle>Bluetooth Watcher for KVMs</AssemblyTitle>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
