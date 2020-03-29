@@ -23,10 +23,10 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore ${{ env.APP_PATH }} --verbosity detailed
+      run: dotnet restore ${{ env.APP_PATH }}
 
     - name: Build
-      run: dotnet build ${{ env.APP_PATH }} --configuration Release --no-restore --verbosity detailed
+      run: dotnet build ${{ env.APP_PATH }} --configuration Release --no-restore
 
     - name: Publish
       run: dotnet publish ${{ env.APP_PATH }} --configuration Release --no-restore --output .\publish
@@ -53,6 +53,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} 
-        asset_path: .\publish\*.zip
+        asset_path: .\publish\*
         asset_name: bl-watcher
         asset_content_type: application/zip
