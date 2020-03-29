@@ -9,7 +9,7 @@ on:
     branches: [ master ]
 
 env: 
-  app_source: .\src\jda-bl-forms-core\jda-bl-forms-core.csproj
+  APP_PATH: .\src\jda-bl-forms-core\jda-bl-forms-core.csproj
 
 jobs:
   build:
@@ -26,10 +26,10 @@ jobs:
       run: dotnet restore .\src\jda-bl-forms-core\jda-bl-forms-core.csproj --verbosity detailed
 
     - name: Build
-      run: dotnet build $app_source --configuration Release --no-restore
+      run: dotnet build $APP_PATH --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish $app_source --configuration Release --no-restore --output .\publish
+      run: dotnet publish $APP_PATH --configuration Release --no-restore --output .\publish
 
     - name: Create Release
       id: create_release
