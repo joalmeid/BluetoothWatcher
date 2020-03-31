@@ -45,7 +45,7 @@ jobs:
 
     - name: Package app
       shell: pwsh
-      run: Compress-Archive -Path .\publish -DestinationPath .\temp\blwatcher-${{ steps.gitversion.outputs.SemVer }}.zip
+      run: Compress-Archive -Path .\publish -DestinationPath .\blwatcher-${{ steps.gitversion.outputs.SemVer }}.zip
       # working-directory: ./temp
 
     - name: Create Release
@@ -69,6 +69,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} 
-        asset_path: .\temp\blwatcher-${{ steps.gitversion.outputs.SemVer }}.zip
+        asset_path: .\blwatcher-${{ steps.gitversion.outputs.SemVer }}.zip
         asset_name: bl-watcher
         asset_content_type: application/zip
